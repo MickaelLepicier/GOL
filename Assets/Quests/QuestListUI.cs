@@ -21,6 +21,12 @@ public class QuestListUI : MonoBehaviour
 
     private readonly List<GameObject> spawned = new List<GameObject>();
 
+    private void Awake()
+    {
+        if (panelController == null)
+            panelController = GetComponent<QuestPanelController>();
+    }
+
     private void Start()
     {
         if (QuestManager.Instance == null)
@@ -45,7 +51,7 @@ public class QuestListUI : MonoBehaviour
         if (panelTitleText != null) panelTitleText.text = "Quests";
         if (addQuestButton != null) addQuestButton.SetActive(true);
         CancelAddQuestForm();
-        panelController.OpenPanel(); // see below
+        OpenQuestPanel();
         Refresh();
     }
 
@@ -55,7 +61,7 @@ public class QuestListUI : MonoBehaviour
         if (panelTitleText != null) panelTitleText.text = "Completed";
         if (addQuestButton != null) addQuestButton.SetActive(false);
         CancelAddQuestForm();
-        panelController.OpenPanel();
+        OpenQuestPanel();
         Refresh();
     }
 
@@ -91,6 +97,17 @@ public class QuestListUI : MonoBehaviour
             addQuestForm.SetActive(false);
     }
 
+
+    private void OpenQuestPanel()
+    {
+        if (panelController == null)
+        {
+            Debug.LogError("QuestPanelController missing on QuestUI!");
+            return;
+        }
+
+        panelController.OpenPanel();
+    }
 
     private void ShowNameError(bool show, string message = "Name is required...")
     {
