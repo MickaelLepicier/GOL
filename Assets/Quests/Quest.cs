@@ -40,10 +40,10 @@ public class Quest
     {
         switch (level)
         {
-            case QuestLevel.Easy: return 10;
-            case QuestLevel.Normal: return 50;
-            case QuestLevel.Hard: return 250;
-            case QuestLevel.Extreme: return 1000;
+            case QuestLevel.Easy: return 1;
+            case QuestLevel.Normal: return 5;
+            case QuestLevel.Hard: return 25;
+            case QuestLevel.Extreme: return 100;
             default: return 0;
         }
     }

@@ -47,21 +47,35 @@ public class QuestListUI : MonoBehaviour
 
     public void ShowActiveQuests()
     {
+       if (panelController.IsOpen && !showingCompleted)
+        {
+           panelController.CloseQuestPanel();
+           return;
+        }  
+
         showingCompleted = false;
         if (panelTitleText != null) panelTitleText.text = "Quests";
         if (addQuestButton != null) addQuestButton.SetActive(true);
         CancelAddQuestForm();
         OpenQuestPanel();
+        panelController.OpenPanel();
         Refresh();
     }
 
     public void ShowCompletedQuests()
     {
+        if (panelController.IsOpen && showingCompleted)
+        {
+           panelController.CloseQuestPanel();
+           return;
+        }
+
         showingCompleted = true;
         if (panelTitleText != null) panelTitleText.text = "Completed";
         if (addQuestButton != null) addQuestButton.SetActive(false);
         CancelAddQuestForm();
         OpenQuestPanel();
+        panelController.OpenPanel();
         Refresh();
     }
 

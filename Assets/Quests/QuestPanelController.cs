@@ -5,6 +5,8 @@ public class QuestPanelController : MonoBehaviour
     [SerializeField] private GameObject questPanel;
     [SerializeField] private GameObject modalBlocker;
 
+    public bool IsOpen => questPanel != null && questPanel.activeSelf;
+    
     public void OpenPanel()
     {
        SetOpen(true);
